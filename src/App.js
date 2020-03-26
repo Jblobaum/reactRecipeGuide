@@ -1,26 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
+import { MemoryRouter } from 'react-router-dom';
+import { LinkContainer } from "react-router-bootstrap";
+import { Nav, Navbar } from "react-bootstrap";
+
+
+// import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
+// import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import Routes from './Routes'
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+const App = () => (
+  <MemoryRouter>
+
+    <Navbar className="justify-content-between" collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar.Brand>Recipe Guide</Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav>
+        <LinkContainer to="/signup">
+        <Nav.Link>Sign Up</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/login">
+            <Nav.Link>Log In</Nav.Link>
+            </LinkContainer>
+        </Nav>
+
+        <Button pullRight variant="outline-info">Log Out</Button>
+      </Navbar.Collapse>
+    </Navbar>
+
+    <Routes />
+  </MemoryRouter>
+);
+
+
 
 export default App;
+
