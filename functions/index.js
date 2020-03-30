@@ -1,17 +1,14 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
-
+const express = require('express')
+const app = express()
 
 admin.initializeApp()
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-exports.helloWorld = functions.https.onRequest((request, response) => {
- response.send("Hello world!");
-});
 
-exports.getUsers = functions.https.onRequest((request, response) => {
+
+
+app.get('/users', (req, res)=>{
     admin.firestore()
     .collection('user')
     .get()
@@ -23,9 +20,9 @@ exports.getUsers = functions.https.onRequest((request, response) => {
         return response.json(users);
     })
     .catch(err => console.log(err));
-});
+})
 
-exports.createUser= functions.https.onRequest((request, response) => {
+app.post('/user', (request, response) => {
     const newUser = {
         username: request.body.username,
         password: request.body.password
@@ -39,6 +36,12 @@ exports.createUser= functions.https.onRequest((request, response) => {
     .catch(err => {
         response.status(500).json({ error: 'Something went wrong.'});
         console.log(err);
-        
     });
 });
+
+
+
+
+
+
+exports.api = functions.https.onRequest(app);
