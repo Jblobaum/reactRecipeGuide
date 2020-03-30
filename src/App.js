@@ -1,20 +1,28 @@
-import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { LinkContainer } from "react-router-bootstrap";
-import { Nav, Navbar } from "react-bootstrap";
-
-
-// import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
-// import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
-import Routes from './Routes'
-
+import React, { component } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './App.css';
+import home from './Pages/home';
+import signUp from './Pages/signUp';
+import login from './Pages/login';
 
 
-const App = () => (
-);
 
+
+class App extends Component {
+    render() {
+        return (
+            <div className="App">
+             <Router>
+                 <Switch>
+                     <Route exact path="/" component= {home} />
+                     <Route exact path="signup" component= {signUp} />
+                     <Route exact path="login" component= {login} /> 
+                 </Switch>
+             </Router>
+            </div>
+        )
+    }
+}
 
 
 export default App;
