@@ -4,6 +4,7 @@ import './App.css';
 import home from './Pages/home';
 import signUp from './Pages/signUp';
 import login from './Pages/login';
+import navBar from './Components/navBar';
 
 
 
@@ -13,6 +14,7 @@ class App extends Component {
         return (
             <div className="App">
              <Router>
+                 <navBar />
                  <Switch>
                      <Route exact path="/" component= {home} />
                      <Route exact path="signup" component= {signUp} />
